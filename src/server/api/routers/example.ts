@@ -15,13 +15,12 @@ export const exampleRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
       const url = shortid.generate();
       const { shortLink } = await ctx.db.example.create({
         data: {
           clicl: "0",
           originalLink: input.originalLink,
-          shortLink: url as string,
+          shortLink: url,
         },
       });
 

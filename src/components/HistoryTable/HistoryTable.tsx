@@ -3,7 +3,7 @@ import { Box, Heading, Table } from "@radix-ui/themes";
 import moment from "moment";
 import React from "react";
 
-const HistoryTable: React.FC = ({}) => {
+const HistoryTable: React.FC = () => {
   const { data } = api.example.hello.useQuery();
   return (
     <Box
@@ -29,15 +29,14 @@ const HistoryTable: React.FC = ({}) => {
             return (
               <Table.Row key={index}>
                 <Table.RowHeaderCell>
-                  <a href={window.location.origin + item.shortLink}>
-                    {window.location.origin}
-                    {item.shortLink}
+                  <a href={`${window.location.origin}/${item.shortLink}`}>
+                    {`${window.location.origin}/${item.shortLink}`}
                   </a>
                 </Table.RowHeaderCell>
                 <Table.Cell>{item.originalLink}</Table.Cell>
                 <Table.Cell>{item.clicl}</Table.Cell>
                 <Table.Cell>
-                  {moment(item.date as Date).format("MM/DD/YYYY : HH:mm")}{" "}
+                  {moment(item.date).format("MM/DD/YYYY : HH:mm")}{" "}
                 </Table.Cell>
               </Table.Row>
             );

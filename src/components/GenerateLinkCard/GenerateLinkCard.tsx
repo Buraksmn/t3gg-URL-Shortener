@@ -4,9 +4,7 @@ import { Box, Button, Flex, TextField } from "@radix-ui/themes";
 import { Link2Icon } from "@radix-ui/react-icons";
 import { api } from "@app/utils/api";
 
-export interface GenerateLinkCardProps {}
-
-const GenerateLinkCard: React.FC<GenerateLinkCardProps> = () => {
+const GenerateLinkCard: React.FC = () => {
   const generateMutation = api.example.generateEasyLink.useMutation({
     onSuccess: () => {
       window.location.reload();
