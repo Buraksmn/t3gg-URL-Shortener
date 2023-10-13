@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Box, Button, Flex, TextField } from "@radix-ui/themes";
 import { Link2Icon } from "@radix-ui/react-icons";
 import { api } from "@app/utils/api";
 
 const GenerateLinkCard: React.FC = () => {
+  const [originalLink, setOriginalLink] = useState("");
+
   const generateMutation = api.example.generateEasyLink.useMutation({
     onSuccess: () => {
       window.location.reload();
@@ -30,7 +32,12 @@ const GenerateLinkCard: React.FC = () => {
             <TextField.Slot>
               <Link2Icon width={16} height={16}></Link2Icon>
             </TextField.Slot>
-            <TextField.Input radius="full" size={"3"} placeholder="Long Url" />
+            <TextField.Input
+              onChange={(e) => setOriginalLink(e.target.value)}
+              radius="full"
+              size={"3"}
+              placeholder="Long Url"
+            />
           </TextField.Root>
         </Flex>
 
@@ -38,7 +45,7 @@ const GenerateLinkCard: React.FC = () => {
           onClick={() => {
             generateMutation.mutate(
               {
-                originalLink: "www.google.com",
+                originalLink,
               },
               {},
             );
